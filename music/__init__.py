@@ -28,5 +28,9 @@ def create_app(test_config=None):
     @app.route('/test_cs1.6')
     def hello():
         return 'hola mundo!'
+    
+
+    from . import db
+    db.init_app(app)
 
     return app
