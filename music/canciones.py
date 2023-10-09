@@ -6,7 +6,7 @@ from werkzeug.exceptions import abort
 
 from music.db import get_db
 
-bp = Blueprint('blog', __name__)
+bp = Blueprint('music', __name__)
 
 @bp.route('/')
 def index():

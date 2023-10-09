@@ -37,4 +37,6 @@ def create_app(test_config=None):
     app.register_blueprint(canciones.bp)
     app.add_url_rule('/', endpoint='index')
 
+    from . import albunes
+    app.register_blueprint(albunes.bp)
     return app

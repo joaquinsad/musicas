@@ -1,0 +1,12 @@
+{% block header %}
+<h1>{% block title %}----{% endblock %}</h1>
+{% endblock %} {% block content %} {% for albunes in albunes %}
+<article class="post">
+  <header>
+    <div>
+      <h1>{{ albunes['titulo'] }} ({{albunes['canciones']}})</h1>
+      <div class="about">de {{ albunes['nombre'] }}</div>
+    </div>
+  </header>
+</article>
+{% endfor %} {% endblock %}
