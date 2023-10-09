@@ -39,4 +39,9 @@ def create_app(test_config=None):
 
     from . import albunes
     app.register_blueprint(albunes.bp)
+
+    
+    from . import artista
+    app.register_blueprint(artista.bp)
     return app
+    
