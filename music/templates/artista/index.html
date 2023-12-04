@@ -1,11 +1,14 @@
 {% extends 'base.html' %} {% block header %}
-<h1>{% block title %}----{% endblock %}</h1>
+<h1>{% block title %}lista de artista{% endblock %}</h1>
 {% endblock %} {% block content %}
-<h1>lista de artista</h1>
+<h1>artista</h1>
 {% for artista in artista %}
 <article class="post">
   <header>
     <div>
+      <a href="{{ url_for('artista.detalle', id=artista['id']) }}">
+        {{ artista['albums'] }}</a
+      >
       <h1>{{ artista['artista'] }} ({{artista['albums']}})</h1>
     </div>
   </header>

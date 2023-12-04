@@ -1,13 +1,17 @@
 {% extends 'base.html' %} {% block header %}
-<h1>{% block title %}----{% endblock %}</h1>
+<h1>{% block title %}lista de albunes{% endblock %}</h1>
 {% endblock %} {% block content %}
-<h1>lista de albunes</h1>
-{% for albunes in albunes %}
+<h1>albunes</h1>
+{% for album in albums %}
 <article class="post">
   <header>
     <div>
-      <h1>{{ albunes['titulo'] }} ({{albunes['canciones']}})</h1>
-      <div class="about">de {{ albunes['nombre'] }}</div>
+      <h1>
+        <a href="{{ url_for('albums.detalle', id=album['id']) }}">
+          {{ album['titulo'] }}</a
+        >
+      </h1>
+      <div class="about">de {{ album['nombre'] }}</div>
     </div>
   </header>
 </article>

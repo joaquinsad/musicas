@@ -1,0 +1,11 @@
+{% extends 'base.html' %} {% block header %}
+<h1>{% block title %}Detalle de album{% endblock %}</h1>
+{% endblock %} {% block content %}
+<h1>{{album['titulo']}} de {{album['nombre']}}</h1>
+<h2>canciones</h2>
+<ul>
+  {% for cancion in canciones %}
+  <li>{{ cancion['nombre'] }}</li>
+  {% endfor %}
+</ul>
+{% endblock %}
