@@ -16,7 +16,7 @@ def index():
     db = get_db()
     albums = db.execute(
         """SELECT  a.albumId as id, a.title as titulo, ar.name as nombre FROM albums a JOIN artists ar on  ar.ArtistId = a.ArtistId JOIN tracks t on t.AlbumId = a.AlbumId
-GROUP BY a.AlbumId"""
+    GROUP BY a.AlbumId"""
     ).fetchall()
     return render_template('albums/index.html', albums=albums)
 
@@ -32,7 +32,7 @@ def detalle(id):
     ).fetchone()
    
     canciones = db.execute(
-        """SELECT name as nombre from tracks
+        """SELECT TrackId, name as nombre from tracks
         where AlbumId = ?""",(id,)
     ).fetchall()
 

@@ -10,6 +10,11 @@
         <a href="{{ url_for('albums.detalle', id=album['id']) }}">
           {{ album['titulo'] }}</a
         >
+        {% for artista in artista %}
+        <a href="{{ url_for'artista.detalle'}}">
+          {{ artista['nombre_del_artista'] }}</a
+        >
+        {% endfor %}
       </h1>
       <div class="about">de {{ album['nombre'] }}</div>
     </div>

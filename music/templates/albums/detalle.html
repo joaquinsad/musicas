@@ -4,8 +4,12 @@
 <h1>{{album['titulo']}} de {{album['nombre']}}</h1>
 <h2>canciones</h2>
 <ul>
-  {% for cancion in canciones %}
-  <li>{{ cancion['nombre'] }}</li>
+  {% for albums in canciones %}
+  <li>
+    <a href="{{ url_for('albums.detalle', id=albums['id']) }}">
+      {{ album['nombre_del_album'] }}</a
+    >
+  </li>
   {% endfor %}
 </ul>
 {% endblock %}

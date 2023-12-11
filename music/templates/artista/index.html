@@ -7,9 +7,13 @@
   <header>
     <div>
       <a href="{{ url_for('artista.detalle', id=artista['id']) }}">
-        {{ artista['albums'] }}</a
+        {{ artista['artista'] }}
+      </a>
+      {% for album in albums %}
+      <a href="{{ url_for('albums.detalle', id=albums['id']) }}">
+        {{ album['nombre_del_album'] }}</a
       >
-      <h1>{{ artista['artista'] }} ({{artista['albums']}})</h1>
+      {% endfor %}
     </div>
   </header>
 </article>

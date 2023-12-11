@@ -6,35 +6,32 @@ from werkzeug.exceptions import abort
 
 from music.db import get_db
 
-bp = Blueprint('artistas', __name__, url_prefix="/artistas")
+bp = Blueprint('artista', __name__, url_prefix="/artistas")
 
 @bp.route('/')
 def index():
     db = get_db()
-    artistas = db.execute(
-        """SELECT ar.name as artistas, COUNT(ar.name) as albums 
-        from albums a join artists ar on a.ArtistId = ar.ArtistId
-        group by ar.ArtistId WHERE artistId = ?""",(id,)
+    artista = db.execute(
+        """SELECT artistId as id, name as artista
+         from artists ORDER BY artista"""
     ).fetchall()
-    return render_template('artista/index.html', artistas=artistas)
+    return render_template('artista/index.html', artista=artista)
 
 @bp.route('/<int:id>/detalle', methods=('GET', 'POST'))
 def detalle(id):
     db = get_db()
-    album = db.execute(
-        """SELECT  a.AlbumId,COUNT(t.name) as canciones ,a.title as titulo,
-        ar.name as nombre FROM albums a JOIN artists ar on 
-        ar.ArtistId = a.ArtistId JOIN tracks t on t.AlbumId = a.AlbumId
-        WHERE a.AlbumId = ?""", 
+    artista = db.execute(
+        """SELECT artistId as id, name as nombre_del_artista from artists
+        where ArtistId = ?""", 
         (id,)
     ).fetchone()
    
-    canciones = db.execute(
-        """SELECT name as nombre from tracks
-        where AlbumId = ?""",(id,)
+    albums = db.execute(
+        """SELECT albumId as id, Title as nombre_del_album from albums
+        where ArtistId = ?""",(id,)
     ).fetchall()
 
-    return render_template('artista/detalle.html', album=album, canciones=canciones)
+    return render_template('artista/detalle.html', artista=artista, albums=albums)
 #---------------------------jsonify-------------------------------------
 bpapi = Blueprint('artista', __name__, url_prefix="api/artista")
 
